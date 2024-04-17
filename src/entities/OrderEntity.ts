@@ -12,10 +12,10 @@ export class OrderEntity {
     statut?: string;
  
     @ManyToOne(()=>UserEntity,(user)=>user.orders,{ onDelete: 'CASCADE' })
-    // @JoinColumn({ name: "id_user" })
+    @JoinColumn({ name: "id_user" })
     user?:UserEntity
 
-    @OneToMany(()=>ProductEntity,(product)=>product.order)
+    @OneToMany(()=>ProductEntity,(product)=>product.order,{cascade: true})
     products?:ProductEntity[]
 
 }

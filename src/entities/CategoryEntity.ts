@@ -7,7 +7,7 @@ export class CategoryEntity {
     id?: number;
   
     @Column({ nullable: false })
-    nom?: string;
+    name?: string;
 
     @Column({ nullable: false })
     description?: string;

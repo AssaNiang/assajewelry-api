@@ -3,7 +3,7 @@ import dotenv from "dotenv";
 import { ProductEntity } from "./entities/ProductEntity";
 import { AddressEntity } from "./entities/AddressEntity";
 import { CategoryEntity } from "./entities/CategoryEntity";
-import { CollectionEntity } from "./entities/CollectionEntity";
+// import { CollectionEntity } from "./entities/CollectionEntity";
 import { ImageEntity } from "./entities/ImageEntity";
 import { OrderEntity } from "./entities/OrderEntity";
 import { SizeEntity } from "./entities/SizeEntity";
@@ -19,6 +19,6 @@ const AppDataSource = new DataSource({
     password: process.env.DB_PASSWORD,
     database: process.env.DB_NAME,
     synchronize: true,
-    entities: [ProductEntity,AddressEntity,CategoryEntity,CollectionEntity,ImageEntity,OrderEntity,SizeEntity,UserEntity]
+    entities: [ProductEntity,AddressEntity,CategoryEntity,ImageEntity,OrderEntity,SizeEntity,UserEntity]
 });
 export default AppDataSource;
