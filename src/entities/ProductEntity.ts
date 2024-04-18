@@ -1,4 +1,13 @@
-import { Column, Entity, JoinColumn, JoinTable, ManyToMany, ManyToOne, OneToMany, PrimaryGeneratedColumn} from "typeorm";
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  JoinTable,
+  ManyToMany,
+  ManyToOne,
+  OneToMany,
+  PrimaryGeneratedColumn,
+} from "typeorm";
 import { SizeEntity } from "./SizeEntity";
 import { UserEntity } from "./UserEntity";
 import { ImageEntity } from "./ImageEntity";
@@ -6,44 +15,59 @@ import { ImageEntity } from "./ImageEntity";
 import { OrderEntity } from "./OrderEntity";
 import { CategoryEntity } from "./CategoryEntity";
 
-@Entity({name: "product", schema: 'public'})
+@Entity({ name: "product", schema: "public" })
 export class ProductEntity {
-    @PrimaryGeneratedColumn()
-    id?: number;
-  
-    @Column({ nullable: false })
-    name?: string;
+  @PrimaryGeneratedColumn()
+  id?: number;
 
-    @Column({ nullable: false })
-    price?:number;
+  @Column({ nullable: false })
+  name?: string;
 
-    @Column({ nullable: false })
-    description?: string;
+  @Column({ nullable: false })
+  price?: number;
 
-   @ManyToOne(()=>CategoryEntity,(category)=>category.products,{ onDelete: 'CASCADE' })
-   @JoinColumn({ name: "id_category" })
-   category?:CategoryEntity
+  @Column({ nullable: false })
+  description?: string;
 
-   @ManyToOne(()=>OrderEntity,(order)=>order.products,{ onDelete: 'CASCADE' })
-   @JoinColumn({ name: "id_order" })
-   order?:OrderEntity
+  @ManyToOne(() => CategoryEntity, (category) => category.products, {
+    onDelete: "CASCADE"
+  })
+  @JoinColumn({ name: "id_category"})
+  category?: CategoryEntity;
 
-   // @ManyToOne(()=>CollectionEntity,(collection)=>collection.products,{ onDelete: 'CASCADE' })
-   // @JoinColumn({ name: "id_collection" })
-   // collection?:CollectionEntity 
+// Definir ca en premier ou faire ALTER TABLE product MODIFY id_category INT NOT NULL;
+//  @ManyToOne(() => CategoryEntity, (category) => category.products, {
+//    onDelete: "CASCADE",nullable:false
+//  })
+//  @JoinColumn({ name: "id_category"})
+//  category?: CategoryEntity;
 
-   @ManyToMany(()=>SizeEntity,(size:SizeEntity)=>size.products,{  nullable: true })
-//    @JoinTable()
-@JoinTable({ name: "product_size" })
 
-   size?:SizeEntity[]
 
-   @ManyToMany(()=>UserEntity,(user:UserEntity)=>user.products,{ nullable: true })
-   @JoinTable({ name: "comment" })
-   users?:UserEntity[]
 
-   @OneToMany(()=>ImageEntity,(image)=>image.product,{cascade: true})
-   images?:ImageEntity[]
+  @ManyToOne(() => OrderEntity, (order) => order.products, {
+    onDelete: "CASCADE",
+  })
+  @JoinColumn({ name: "id_order" })
+  order?: OrderEntity;
+
+  // @ManyToOne(()=>CollectionEntity,(collection)=>collection.products,{ onDelete: 'CASCADE' })
+  // @JoinColumn({ name: "id_collection" })
+  // collection?:CollectionEntity
+
+  @ManyToMany(() => SizeEntity, (size: SizeEntity) => size.products, {
+    nullable: true,
+  })
+  //    @JoinTable()
+  @JoinTable({ name: "product_size" })
+  size?: SizeEntity[];
+
+  @ManyToMany(() => UserEntity, (user: UserEntity) => user.products, {
+    nullable: true,
+  })
+  @JoinTable({ name: "comment" })
+  users?: UserEntity[];
+
+  @OneToMany(() => ImageEntity, (image) => image.product, { cascade: true })
+  images?: ImageEntity[];
 }
-
-
