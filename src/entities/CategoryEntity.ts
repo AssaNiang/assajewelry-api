@@ -16,7 +16,7 @@ export class CategoryEntity {
     image?: string;
     
     @OneToMany(()=>ProductEntity,(product)=>product.category,{cascade: true})
-    products?:ProductEntity[]
+    products?:ProductEntity[];
     
     // @OneToMany( (product) => product.categorie)
     // products?: ProductEntity[];

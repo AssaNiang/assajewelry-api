@@ -12,8 +12,9 @@ import { SizeEntity } from "./SizeEntity";
 import { UserEntity } from "./UserEntity";
 import { ImageEntity } from "./ImageEntity";
 // import { CollectionEntity } from "./CollectionEntity";
-import { OrderEntity } from "./OrderEntity";
+// import { OrderEntity } from "./OrderEntity";
 import { CategoryEntity } from "./CategoryEntity";
+import { CommentEntity } from "./CommentEntity";
 
 @Entity({ name: "product", schema: "public" })
 export class ProductEntity {
@@ -45,11 +46,11 @@ export class ProductEntity {
 
 
 
-  @ManyToOne(() => OrderEntity, (order) => order.products, {
-    onDelete: "CASCADE",
-  })
-  @JoinColumn({ name: "id_order" })
-  order?: OrderEntity;
+  // @ManyToOne(() => OrderEntity, (order) => order.products, {
+  //   onDelete: "CASCADE",
+  // })
+  // @JoinColumn({ name: "id_order" })
+  // order?: OrderEntity;
 
   // @ManyToOne(()=>CollectionEntity,(collection)=>collection.products,{ onDelete: 'CASCADE' })
   // @JoinColumn({ name: "id_collection" })
@@ -62,12 +63,16 @@ export class ProductEntity {
   @JoinTable({ name: "product_size" })
   size?: SizeEntity[];
 
-  @ManyToMany(() => UserEntity, (user: UserEntity) => user.products, {
-    nullable: true,
-  })
-  @JoinTable({ name: "comment" })
-  users?: UserEntity[];
+  // @ManyToMany(() => UserEntity, (user: UserEntity) => user.products, {
+  //   nullable: true,
+  // })
+  // @JoinTable({ name: "comment" })
+  // users?: UserEntity[];
 
   @OneToMany(() => ImageEntity, (image) => image.product, { cascade: true })
   images?: ImageEntity[];
+
+  @OneToMany(() => CommentEntity, (comment) => comment.product, { cascade: true })
+  comments?: CommentEntity[];
+
 }

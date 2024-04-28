@@ -1,8 +1,9 @@
 import { Column, Entity, ManyToMany, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { UserRole } from "../models/interfaces/UserRole";
-import { AddressEntity } from "./AddressEntity";
-import { OrderEntity } from "./OrderEntity";
+// import { AddressEntity } from "./AddressEntity";
+// import { OrderEntity } from "./OrderEntity";
 import { ProductEntity } from "./ProductEntity";
+import { CommentEntity } from "./CommentEntity";
 
 @Entity({ name: "user", schema: "public" })
 export class UserEntity {
@@ -28,12 +29,14 @@ export class UserEntity {
   })
   role?: UserRole;
 
-  @OneToMany(()=>AddressEntity,(address)=>address.user,{cascade: true})
-  address?:AddressEntity[]
+  @OneToMany(() => CommentEntity, (comment) => comment.user, { cascade: true })
+  comments?: CommentEntity[];
+  // @OneToMany(()=>AddressEntity,(address)=>address.user,{cascade: true})
+  // address?:AddressEntity[]
 
-  @OneToMany(()=>OrderEntity,(order)=>order.user,{cascade: true})
-  orders?:OrderEntity[]
-
-  @ManyToMany(()=>ProductEntity,(product:ProductEntity)=>product.users,{ cascade: true, nullable: true })
-  products?:ProductEntity[]
+  // @OneToMany(()=>OrderEntity,(order)=>order.user,{cascade: true})
+  // orders?:OrderEntity[]
+// si j'avais une relation many to many avec les produits
+  // @ManyToMany(()=>ProductEntity,(product:ProductEntity)=>product.users,{ cascade: true, nullable: true })
+  // products?:ProductEntity[]
 }

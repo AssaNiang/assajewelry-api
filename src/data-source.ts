@@ -1,13 +1,14 @@
 import { DataSource } from "typeorm";
 import dotenv from "dotenv";
 import { ProductEntity } from "./entities/ProductEntity";
-import { AddressEntity } from "./entities/AddressEntity";
+// import { AddressEntity } from "./entities/AddressEntity";
 import { CategoryEntity } from "./entities/CategoryEntity";
 // import { CollectionEntity } from "./entities/CollectionEntity";
 import { ImageEntity } from "./entities/ImageEntity";
-import { OrderEntity } from "./entities/OrderEntity";
+// import { OrderEntity } from "./entities/OrderEntity";
 import { SizeEntity } from "./entities/SizeEntity";
 import { UserEntity } from "./entities/UserEntity";
+import { CommentEntity } from "./entities/CommentEntity";
 
 dotenv.config({path: ".env.local"});
 
@@ -18,7 +19,7 @@ const AppDataSource = new DataSource({
     username: process.env.DB_USERNAME,
     password: process.env.DB_PASSWORD,
     database: process.env.DB_NAME,
-    synchronize: true,
-    entities: [ProductEntity,AddressEntity,CategoryEntity,ImageEntity,OrderEntity,SizeEntity,UserEntity]
+    synchronize: false,
+    entities: [ProductEntity,CategoryEntity,ImageEntity,SizeEntity,UserEntity,CommentEntity]
 });
 export default AppDataSource;

@@ -8,27 +8,27 @@ class ProductService {
   async getAll() {
     console.log("ProductService");
     //return this.productRepository.find({ relations: ["category", "images"] });
-     return this.productRepository.find({ relations: { category: true, images:true,size:true } });
+     return this.productRepository.find({ relations: { category: true, images:true,size:true,comments:true } });
   }
 
   async getAllByCategory(categoryName: string): Promise<ProductEntity[]> {
     console.log("coucou");
     console.log(`ProductService - Products for Category: ${categoryName}`);
     return this.productRepository.find({
-      where: { category: { name: categoryName }}, relations: ["category", "images"],
+      where: { category: { name: categoryName }}, relations: ["category", "images","comments"],
     });
   }
   async getById(id: number) {
     console.log("ProductService getbyid");
     return this.productRepository.findOne({
       where: { id: id },
-      relations: {  category:true, images:true},
+      relations: {  category:true, images:true,comments:true},
     });
   }
 
   async create(product: ProductEntity) {
-    const newPlant = this.productRepository.create(product);
-    return this.productRepository.save(newPlant);
+    const newProduct = this.productRepository.create(product);
+    return this.productRepository.save(newProduct);
   }
 
   async update(id: string, product: ProductEntity) {
