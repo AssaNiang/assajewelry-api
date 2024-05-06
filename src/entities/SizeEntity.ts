@@ -1,4 +1,4 @@
-import { Column, Entity, JoinColumn, ManyToMany, ManyToOne, PrimaryGeneratedColumn} from "typeorm";
+import { Column, Entity,ManyToMany, PrimaryGeneratedColumn} from "typeorm";
 import { ProductEntity } from "./ProductEntity";
 
 
@@ -8,6 +8,9 @@ export class SizeEntity {
     @PrimaryGeneratedColumn()
     id?: number;
   
+    // @Column({ nullable: true})
+    // name?: string;
+    
     @Column({ nullable: false})
     name?: string;
  

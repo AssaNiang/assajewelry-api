@@ -15,14 +15,14 @@ class ProductService {
     console.log("coucou");
     console.log(`ProductService - Products for Category: ${categoryName}`);
     return this.productRepository.find({
-      where: { category: { name: categoryName }}, relations: ["category", "images","comments"],
+      where: { category: { name: categoryName }}, relations: ["category", "images","comments","size"],
     });
   }
   async getById(id: number) {
     console.log("ProductService getbyid");
     return this.productRepository.findOne({
       where: { id: id },
-      relations: {  category:true, images:true,comments:true},
+      relations: {  category:true, images:true,comments:true,size:true},
     });
   }
 
