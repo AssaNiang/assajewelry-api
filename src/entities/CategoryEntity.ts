@@ -20,12 +20,4 @@ export class CategoryEntity {
     
     @OneToMany(()=>ProductEntity,(product)=>product.category,{cascade: true})
     products?:ProductEntity[];
-    
-    // @OneToMany( (product) => product.categorie)
-    // products?: ProductEntity[];
-
-    // public deleteProducts(products: ProductEntity[]){
-    //     this.products = [];
-    //     products.map((product) => product.categorie = undefined);
-    // }
 }

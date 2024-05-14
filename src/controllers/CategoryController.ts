@@ -9,6 +9,7 @@ class CategoryController {
 
     try {
       const categories = await this.categoryService.getAll();
+      console.log("category Controller",categories);
       res.send({ status: "OK", data: categories });
     } catch (error) {
       res.status(500).send({ status: "Error no category", message: error });

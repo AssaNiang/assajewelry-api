@@ -11,13 +11,10 @@ export const mapProductEntity = (productEntity: ProductEntity): Product => {
         price: productEntity.price,
         description: productEntity.description,
         category: productEntity.category ? productEntity.category.name : undefined,
-        // comment: productEntity.comments ? productEntity.comments.map(comment => comment.comment_text!).filter(comment_text => comment_text !== undefined) : [],
         comment:productEntity.comments ? productEntity.comments.map(comment => ({ comment_text: comment.comment_text!, created_at: comment.created_at! })).filter(comment => comment.comment_text !== undefined) : [],
-
         image: productEntity.images ? productEntity.images.map(image => image.image_url!).filter(url => url !== undefined) : [],
         size: productEntity.size ? productEntity.size.map(size => size.name).filter(name => name !== undefined) as string[] : []
     };
-
     return product;
 }
 

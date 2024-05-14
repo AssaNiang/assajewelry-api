@@ -1,5 +1,6 @@
 import { Router } from "express";
 import ProductController from "../controllers/ProductController";
+import checkToken from "../middlewares/CheckToken";
 
 
 const productRouter = Router();
@@ -21,7 +22,7 @@ productRouter.get("/:id", (req, res) => {
 });
 
 
-productRouter.post("/", (req, res) => {
+productRouter.post("/",checkToken, (req, res) => {
     console.log("productRouter");
    productController.create(req, res);
   });
