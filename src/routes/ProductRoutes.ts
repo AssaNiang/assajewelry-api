@@ -6,7 +6,7 @@ import checkToken from "../middlewares/CheckToken";
 const productRouter = Router();
 const productController = new ProductController();
 
-productRouter.get("/", (req, res) => {
+productRouter.get("/",checkToken, (req, res) => {
   console.log("ProductRouter");
   productController.getAll(req, res);
 });
@@ -27,12 +27,12 @@ productRouter.post("/",checkToken, (req, res) => {
    productController.create(req, res);
   });
   
-  productRouter.put("/:id", (req, res) => {
+  productRouter.patch("/:id",checkToken, (req, res) => {
     console.log("productRouter");
    productController.update(req, res);
   });
   
-  productRouter.delete("/:id", (req, res) => {
+  productRouter.delete("/:id",checkToken,(req, res) => {
     console.log("productRouter");
    productController.delete(req, res);
   });

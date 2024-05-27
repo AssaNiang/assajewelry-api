@@ -27,6 +27,7 @@ class UserService {
     console.log("UserServiceLogin");
     
     const user = await this.userRepository.findOneBy({ email: email });
+    console.log("user",user);
     if(!user){
       return null;
     }
@@ -44,7 +45,7 @@ class UserService {
     };
     const token = jwt.sign(tokenPayload, process.env.JWT_SECRET as string, {expiresIn: "4h"});
     // const token = jwt.sign({id: user.id, email: user.email}, process.env.JWT_SECRET as string, {expiresIn: "4h"});
-    
+    console.log("token dans login",token);
     return token
   }
 

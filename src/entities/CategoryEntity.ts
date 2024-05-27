@@ -15,7 +15,7 @@ export class CategoryEntity {
     @Column({ nullable: false })
     image?: string;
 
-    @Column({ nullable: false })
+    @Column()
     link_category?: string;
     
     @OneToMany(()=>ProductEntity,(product)=>product.category,{cascade: true})

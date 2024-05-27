@@ -57,7 +57,7 @@ class UserController {
           message: "User successfully authenticated",
         });
     } else {
-      res.status(500).json({ status: "Failed", message: "Bad credentials" });
+      res.status(500).json({ status: "Failed", message: "Bad credentials"});
     }
   }
 

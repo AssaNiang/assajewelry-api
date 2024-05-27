@@ -61,8 +61,10 @@ class ProductController {
   async create(req: Request, res: Response) {
     try {
       const productEntity = await this.productService.create(req.body);
-    //   const product = mapProductEntity(productEntity);
-      res.send({ status: "OK", data: productEntity });
+    console.log("le produit est créé");
+    const product = mapProductEntity(productEntity);
+      res.send({ status: "OK", data: product });
+      // res.send({ status: "OK", data: productEntity });
     } catch (error) {
       res.status(500).send({ status: "Failed", message: error });
     }

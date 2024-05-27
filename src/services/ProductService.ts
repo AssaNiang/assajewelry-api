@@ -13,6 +13,7 @@ class ProductService {
 
   async getAllByCategory(categoryName: string): Promise<ProductEntity[]> {
     console.log("coucou");
+
     console.log(`ProductService - Products for Category: ${categoryName}`);
     return this.productRepository.find({
       where: { category: { name: categoryName }}, relations: ["category", "images","comments","size"],
@@ -27,6 +28,7 @@ class ProductService {
   }
 
   async create(product: ProductEntity) {
+    console.log("create product",product)
     const newProduct = this.productRepository.create(product);
     return this.productRepository.save(newProduct);
   }
